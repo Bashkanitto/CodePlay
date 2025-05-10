@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Hunter - Code Play</title>
+    <link rel="stylesheet" href="game1_style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bug Hunter</h1>
+        <p>Исправьте ошибку в коде и нажмите "Проверить".</p>
+
+        <pre id="code-display">
+def calculate_total(price, tax):
+    return price * tax + price
+
+print(calculate_total(100))  # Ошибка!
+        </pre>
+
+        <textarea id="code-input" placeholder="Исправьте код здесь..."></textarea>
+        <button onclick="checkCode()">Проверить</button>
+
+        <p id="result"></p>
+        <p>Очки: <span id="score">0</span></p>
+    </div>
+
+    <script src="game1_js.js"></script>
+</body>
+</html>

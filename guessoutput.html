@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Output — Code Play</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 40px;
+      text-align: center;
+    }
+    .code-box {
+      background-color: #1f1f1f;
+      border: 1px solid #444;
+      padding: 20px;
+      width: 80%;
+      margin: 20px auto;
+      border-radius: 6px;
+      text-align: left;
+    }
+    .options {
+      margin-top: 20px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .correct {
+      background-color: #4caf50;
+      color: #fff;
+    }
+    .wrong {
+      background-color: #f44336;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔍 Угадай, что выведет код</h2>
+
+  <div class="code-box">
+<pre>
+let a = 5;
+let b = "5";
+
+console.log(a == b);
+console.log(a === b);
+</pre>
+  </div>
+
+  <p>❓ Что выведется в консоли?</p>
+
+  <div class="options">
+    <button onclick="check(this, false)">true<br>true</button>
+    <button onclick="check(this, true)">true<br>false</button>
+    <button onclick="check(this, false)">false<br>true</button>
+    <button onclick="check(this, false)">false<br>false</button>
+  </div>
+
+  <script>
+    function check(btn, isCorrect) {
+      document.querySelectorAll('button').forEach(button => button.disabled = true);
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (isCorrect) {
+        alert("✅ Верно! == сравнивает значения, а === ещё и типы.");
+      } else {
+        alert("❌ Почти! Подумай о разнице между == и ===.");
+      }
+    }
+  </script>
+
+</body>
+</html>

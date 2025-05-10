@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bug Hunter — Code Play</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #1e1e1e;
+      color: #c5c5c5;
+      padding: 40px;
+    }
+    .code-container {
+      background: #2d2d2d;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px #000;
+    }
+    .code-line {
+      padding: 5px 10px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .code-line:hover {
+      background: #3a3a3a;
+    }
+    .correct {
+      background: #4caf50 !important;
+      color: #fff;
+    }
+    .wrong {
+      background: #f44336 !important;
+      color: #fff;
+    }
+    h2 {
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Найди баг в коде</h2>
+  <div class="code-container" id="code">
+    <div class="code-line">1. function add(a, b) {</div>
+    <div class="code-line">2. &nbsp;&nbsp;return a + b</div> <!-- БАГ: нет ";" -->
+    <div class="code-line">3. }</div>
+    <div class="code-line">4. </div>
+    <div class="code-line">5. console.log(add(2, 3));</div>
+  </div>
+
+  <script>
+    const lines = document.querySelectorAll(".code-line");
+
+    lines.forEach((line, index) => {
+      line.addEventListener("click", () => {
+        if (index === 1) {
+          line.classList.add("correct");
+          alert("✅ Ты нашёл баг! Не хватает ';' в строке 2");
+        } else {
+          line.classList.add("wrong");
+          setTimeout(() => {
+            line.classList.remove("wrong");
+          }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

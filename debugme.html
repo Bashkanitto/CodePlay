@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Debug Me — Code Play</title>
+  <style>
+    body {
+      background: #1e1e1e;
+      font-family: Consolas, monospace;
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+    }
+    .code-box {
+      background-color: #2d2d2d;
+      padding: 20px;
+      text-align: left;
+      margin: 20px auto;
+      width: 80%;
+      border-radius: 8px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .answers {
+      margin-top: 20px;
+    }
+    .answers button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .correct {
+      background-color: #4caf50;
+      color: white;
+    }
+    .wrong {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🕵️ Найди и исправь ошибку в коде</h2>
+
+  <div class="code-box">
+<pre>
+function multiply(a, b) {
+  return a * b
+}
+
+console.log(multiply(2));
+</pre>
+  </div>
+
+  <p>❓ Что нужно изменить, чтобы код работал правильно?</p>
+
+  <div class="answers">
+    <button onclick="checkAnswer(this, false)">Добавить `console.log` перед return</button>
+    <button onclick="checkAnswer(this, true)">Добавить второй аргумент при вызове: multiply(2, 3)</button>
+    <button onclick="checkAnswer(this, false)">Заменить `*` на `+`</button>
+  </div>
+
+  <script>
+    function checkAnswer(button, isCorrect) {
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        button.classList.add('correct');
+        alert("✅ Верно! Вызов функции был неполным.");
+      } else {
+        button.classList.add('wrong');
+        alert("❌ Неправильно. Подумай ещё.");
+      }
+    }
+  </script>
+
+</body>
+</html>

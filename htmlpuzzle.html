@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Puzzle — Code Play</title>
+  <style>
+    body {
+      background: #1e1e1e;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .tag-container, .drop-zone {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .tag {
+      background-color: #282c34;
+      border: 1px solid #555;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: grab;
+      user-select: none;
+    }
+    .drop-slot {
+      width: 100px;
+      height: 40px;
+      border: 2px dashed #888;
+      border-radius: 5px;
+      line-height: 40px;
+      font-size: 14px;
+      color: #aaa;
+      text-align: center;
+      margin: 5px;
+    }
+    .correct {
+      background-color: #4caf50 !important;
+    }
+    .wrong {
+      background-color: #f44336 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Собери HTML-структуру</h2>
+  <p>Перетащи теги в правильном порядке</p>
+
+  <div class="tag-container" id="tags">
+    <!-- теги появятся здесь -->
+  </div>
+
+  <div class="drop-zone" id="slots">
+    <!-- слоты для перетаскивания -->
+  </div>
+
+  <button onclick="checkAnswer()">Проверить</button>
+
+  <script>
+    const correctOrder = ['<html>', '<body>', '<h1>', '</h1>', '</body>', '</html>'];
+    let tags = [...correctOrder].sort(() => Math.random() - 0.5);
+
+    const tagContainer = document.getElementById('tags');
+    const slots = document.getElementById('slots');
+
+    tags.forEach((tag, i) => {
+      const div = document.createElement('div');
+      div.className = 'tag';
+      div.draggable = true;
+      div.textContent = tag;
+      div.id = `tag-${i}`;
+      div.ondragstart = (e) => {
+        e.dataTransfer.setData('text', e.target.id);
+      };
+      tagContainer.appendChild(div);
+    });
+
+    for (let i = 0; i < correctOrder.length; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'drop-slot';
+      slot.ondragover = (e) => e.preventDefault();
+      slot.ondrop = (e) => {
+        const tagId = e.dataTransfer.getData('text');
+        const dragged = document.getElementById(tagId);
+        e.target.textContent = dragged.textContent;
+        e.target.dataset.value = dragged.textContent;
+      };
+      slots.appendChild(slot);
+    }
+
+    function checkAnswer() {
+      const slotDivs = document.querySelectorAll('.drop-slot');
+      slotDivs.forEach((slot, index) => {
+        if (slot.dataset.value === correctOrder[index]) {
+          slot.classList.add('correct');
+          slot.classList.remove('wrong');
+        } else {
+          slot.classList.add('wrong');
+          slot.classList.remove('correct');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
