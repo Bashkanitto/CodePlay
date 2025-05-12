@@ -6,6 +6,13 @@
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/style.css">
   <style>
+    body{
+      background: #292929;
+      color: rgb(232, 232, 232);
+    }
+    .container{
+      margin-top: 40px;
+    }
     .level-section {
       margin: 30px auto;
       max-width: 900px;
@@ -16,11 +23,15 @@
       padding-bottom: 10px;
     }
     .game-card {
-      background: #fff;
+      background: #505050;
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 15px;
       box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .level-section a{
+      display: block;
+      color: white;
     }
   </style>
 </head>
@@ -31,20 +42,20 @@
 
   <div class="level-section">
     <h3>🔹 Лёгкий уровень</h3>
-    <div class="game-card">Bug Hunter</div>
-    <div class="game-card">Color Coder</div>
+    <a href="./bughunter.html" class="game-card">Bug Hunter</a>
+    <a href="./colorcoder.html" class="game-card">Color Coder</a>
   </div>
 
   <div class="level-section">
     <h3>🔸 Средний уровень</h3>
-    <div class="game-card">Guess the Output</div>
-    <div class="game-card">HTML Puzzle</div>
+    <a href="./guessoutput.html" class="game-card">Guess the Output</a>
+    <a href="./htmlpuzzle.html" class="game-card">HTML Puzzle</a>
   </div>
 
   <div class="level-section">
     <h3>🔺 Сложный уровень</h3>
-    <div class="game-card">Debug Me</div>
-    <div class="game-card">Code Golf</div>
+    <a href="debugme.html" class="game-card">Debug Me</a>
+    <a href="#" class="game-card">Code Golf</a>
   </div>
 </div>
 
